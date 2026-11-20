@@ -27,7 +27,7 @@ async function startBot() {
   }
   sock.ev.on('messages.upsert', async ({ messages }) => {
     const msg = messages[0];
-    if (!msg.message || msg.key.fromMe) return;
+    if (!msg.message || !msg.key.fromMe) return;
     const from = msg.key.remoteJid;
     if (msg.message.imageMessage) await sock.sendMessage(from, { text: "Dah terima gambar ✅" });
     if (msg.message.conversation === ".menu") await sock.sendMessage(from, { text: "Hai! Menu bot:\n.menu - tunjuk menu" });
